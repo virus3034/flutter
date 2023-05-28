@@ -1,7 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -57,15 +65,44 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  String email = '';
+  String password = '';
+
   void _incrementCounter() {
+    FirebaseFirestore.instance.collection('users').doc('Virus2023').set({
+      'full_name': "Gasser", // John Doe
+      'company': "SIM", // Stokes and Sons
+      'age': "22" // 42
+    });
+
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  void SignUp() {
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: '123456');
+  }
+
+  void SignIn() async {
+    FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: 'gasser@example.com', password: '123456');
+
+    String year = '';
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc('Virus2023')
+        .get()
+        .then((value) => year = value.data()!['year'])
+        .then((value) => print("student in year $year"));
+
+    FirebaseFirestore.instance
+        .collection('courses')
+        .get()
+        .then((courses) => courses.docs.forEach((course) {
+              if (course.data()['year'] == year) print(course.data());
+            }));
   }
 
   @override
@@ -116,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: SignIn,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
