@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "244040791955",
+    "project_id": "regesteration-system",
+    "storage_bucket": "regesteration-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244040791955:android:ac14ca95871079e7845a66",
+        "android_client_info": {
+          "package_name": "com.example.gasser_graduation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244040791955-pp4d45l46b305ge2cmelb0fvdqepolv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeKpHbPfHCUYa7Cplk5giCweEy2N5G1Ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244040791955-pp4d45l46b305ge2cmelb0fvdqepolv2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "244040791955-jemrdhhum57t471vcrl51shoskiisi52.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.calculatesum"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
